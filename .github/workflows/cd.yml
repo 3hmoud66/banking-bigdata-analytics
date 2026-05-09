@@ -55,9 +55,10 @@ jobs:
       # ------------------------
       # Deploy dbt project
       # ------------------------
-      - name: dbt run + test (prod)
+      - name: dbt deploy (prod)
         run: |
           cd banking_dbt
+          dbt clean
           dbt deps
-          dbt run    # builds production models on Snowflake
-          dbt test   # validates production data
+          dbt run
+          dbt test
